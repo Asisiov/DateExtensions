@@ -9,29 +9,11 @@
 import Foundation
 
 extension Date {
-  func dateToString() -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    let str = formatter.string(from: self)
-    return str.replacingOccurrences(of: "-", with: "")
-  }
   
-  func ageFromDate() -> Int {
-    let gregorian = Calendar(identifier: .gregorian)
-    let ageComponents = gregorian.dateComponents([.year], from: self, to: Date())
-    return ageComponents.year!
-  }
-  
-  func dateToHours() -> String {
+  func dateToFormatString(_ format: String) -> String {
     let formatter = DateFormatter()
-    formatter.dateFormat = "HH-MM"
-    let str = formatter.string(from: self)
-    return str
-  }
-  
-  func fullTimeString() -> String {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyy-MM-dd HH-MM"
+    formatter.dateFormat = format
+    formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
     let str = formatter.string(from: self)
     return str
   }
